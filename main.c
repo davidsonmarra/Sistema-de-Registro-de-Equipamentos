@@ -34,6 +34,7 @@ void cadastra(){
     fgets(lista[i].nome, 100, stdin); fflush(stdin);
     printf("Preco:\t"); fflush(stdin);
     scanf("%f", &lista[i].preco); fflush(stdin);
+    printf("\n");
   }
 }
 
@@ -95,7 +96,9 @@ void salvaArquivo(){
   char * l = "w", aux[100] = ".txt", nome[100];
   printf("\nIremos criar um arquivo txt com todos os quipamentos cadastrados.\n");
   printf("Digite o nome do arquivo txt (sem o .txt):\t");
-  fgets(nome, sizeof(nome), stdin);
+  fflush (stdin);
+  getchar();
+  gets(nome);
   fflush (stdin);
   strcat(nome, aux);
   fp = fopen(nome, l);
@@ -103,7 +106,7 @@ void salvaArquivo(){
     printf("Erro na abertura do arquivo");
   else{
     for(int i = 0; i < n; i++)
-      fprintf(fp, "Codigo: %d | Nome: %s | Preco: R$%.2f\n", lista[i].codigo, lista[i].nome, lista[i].preco);
+      fprintf(fp, "Codigo: %d\nNome: %sPreco: R$%.2f\n\n", lista[i].codigo, lista[i].nome, lista[i].preco);
     fclose(fp);
   }
 }
